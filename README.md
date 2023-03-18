@@ -1,5 +1,1 @@
-# power outage prediction
-by Tongxun Hu and Jessica Zhang
-
-# Framing the Problem
-
+# power-outage-prediction
