@@ -26,7 +26,9 @@ We first dropped all nan values in the newly added feature columns. Before we cr
 We first chose logistic regression as our model. Since we didn't talk much about hyperparameters of logistic regression, we did an online search and found that the main hyperparameters we tune here are solver and penalty. We get different results while tuning the hyperparameters. We create alist of lists to keep track of possible solver and penalty combinations. After we used for loop trying to loop over all combinations and ran it several times, we found that the model with penalty=l1 and solver='sage' shows a better performance. The solver algorithm is used for optimizing the problem and can be selected from a list of choices including 'newton-cg', 'lbfgs', 'liblinear', 'sag', and 'saga', with the default being 'lbfgs'. Penalty, is used to prevent overfitting by discouraging the model from becoming too complex. Available penalty options include 'l1', 'l2', 'elasticnet', and 'none', with the default being 'l2'. However, it's possible that some penalties may not work with certain solvers. 
 
 Then we tried to use DecisionTreeClassifier as the model. The hyperparameters that we chose from are: 
-`hyperparameters = {'max_depth': [2, 3, 4, 5, 7, 10, 13, 15, 18, None], 'min_samples_split': [2, 5, 10, 20, 50, 100, 200],'criterion': ['gini', 'entropy']}`
+`hyperparameters = {'max_depth': [2, 3, 4, 5, 7, 10, 13, 15, 18, None], 'min_samples_split': [2, 5, 10, 20, 50, 100, 200],'criterion': ['gini', 'entropy']}` Then we used GridSearchCV to find the most optimal hyperparameters, which are: 'criterion': 'entropy', 'max_depth': 4, 'min_samples_split': 5. 
+
+We didn't gain any substantial difference. However, DecisionTreeClassifier had a slightly better performance than the logistic regression in predicting unseen data. For the DecisionTreeClassifier, the accuracy for the training data was around 0.83, and about 0.82 for the testing data. Therefore, the accuracy was improved significantly compared to the baseline model (0.6).
 
 
 
