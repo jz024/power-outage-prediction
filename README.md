@@ -3,7 +3,7 @@ by Tongxun Hu and Jessica Zhang
 
 # Framing the Problem
 
-For this power outage dataset, we try to predict the cause of a major power outage. We will use the already cleaned data from project 3. We are trying to make prediction for the major power outages after 2006, so that we assume that we can access the entire dataframe of power outage (range from 2000 to 2006) to train our model. The response variable will be the CAUSE.CATEGORY column in the dataset; we choose it because we think that it is closely related to the power outage, so it will predict the power outage in an effective way. This prediction will be a classification and we will use multi-class classification since there are multiple causes of power outages. We choose to use accuracy to evaluate our model because it measures the overall performance of the prediction based on the entire set of data. Each cause weighs the same so accuracy can be used to make sure that they contribute equally when calculating the accuracy value. 
+For this power outage dataset, we try to predict the cause of a major power outage. We are trying to make prediction for the major power outages after 2006, so that we assume that we can access the entire dataframe of power outage (range from 2000 to 2006) to train our model. We will use the already cleaned data from project 3. In addition, we changed the CAUSE.CATEGORY into numerical values by assigning numbers to different causes using for loop. The response variable will be the CAUSE.CATEGORY column in the dataset; we choose it because we think that it is closely related to the power outage, so it will predict the power outage in an effective way. This prediction will be a classification and we will use multi-class classification since there are multiple causes of power outages. We choose to use accuracy to evaluate our model because it measures the overall performance of the prediction based on the entire set of data. Each cause weighs the same so accuracy can be used to make sure that they contribute equally when calculating the accuracy value. 
 
 
 ------
@@ -29,7 +29,6 @@ Then we tried to use DecisionTreeClassifier as the model. The hyperparameters th
 `hyperparameters = {'max_depth': [2, 3, 4, 5, 7, 10, 13, 15, 18, None], 'min_samples_split': [2, 5, 10, 20, 50, 100, 200],'criterion': ['gini', 'entropy']}` Then we used GridSearchCV to find the most optimal hyperparameters, which are: 'criterion': 'entropy', 'max_depth': 4, 'min_samples_split': 5. 
 
 We didn't gain any substantial difference. However, DecisionTreeClassifier had a slightly better performance than the logistic regression in predicting unseen data. For the DecisionTreeClassifier, the accuracy for the training data was around 0.83, and about 0.82 for the testing data. Therefore, the accuracy was improved significantly compared to the baseline model (0.6).
-
 
 
 ------
