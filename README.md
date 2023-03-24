@@ -3,7 +3,10 @@ by Tongxun Hu and Jessica Zhang
 
 # Framing the Problem
 
-For this power outage dataset, we try to predict the cause of a major power outage. We are trying to make prediction for the cause of major power outages after the power has been restored, so we assume that we can access all the necessary columns of power outage dataset, which includes columns such as duration, customers affected, etc. to train our model. We will use the already cleaned data from project 3. The response variable will be the CAUSE.CATEGORY column in the dataset; we choose it because we think that it is closely related to the power outage, so it will predict the power outage in an effective way. This prediction will be a classification and we will use multi-class classification since there are multiple causes of power outages. We choose to use accuracy to evaluate our model because it measures the overall performance of the prediction based on the entire set of data. It's a classification problem and the dataset doesn't have class imbalance; each cause weighs the same and the errors are equally bad, so accuracy can be used to make sure that they contribute equally when calculating the accuracy value. 
+For this power outage dataset, we try to predict the cause of a major power outage. We are trying to make prediction for the cause of major power outages after the power has been restored, so we assume that we can access all the necessary columns of power outage dataset, which includes columns such as duration, customers affected, etc. to train our model. We will use the already cleaned data from project 3. The response variable will be the CAUSE.CATEGORY column in the dataset; we choose it because we think that it is closely related to the power outage, so it will predict the power outage in an effective way. This prediction will be a classification and we will use multi-class classification since there are multiple causes of power outages. 
+
+In classification problems, evaluation metrics such as accuracy, precision, recall and F1-score are typically used to assess the performance of the model. Our goal here is to predict the cause of an outage. We assume that the cost of misclassification is the same for all classes. In other words, the cost of false negatives and false positives are the same. In this case, we can use accuracy or F1-score as our evaluation metric. However, the classes in our dataset are very imbalance, meaning that the number of samples in each class is not roughly equal. For example, we have 744 samples belong to severe weather outages, while there are only 38 samples belong to fuel supply emergency
+Outages. In this case, using accuracy as an evaluation metric can be misleading, since a model that simply predicts the majority class would achieve a high accuracy. Therefore, using F-1 score as our evaluation metric is the most appropriate. 
 
 
 ------
@@ -33,6 +36,8 @@ Then we tried to use DecisionTreeClassifier as the model. The hyperparameters th
 `hyperparameters = {'max_depth': [2, 3, 4, 5, 7, 10, 13, 15, 18, None], 'min_samples_split': [2, 5, 10, 20, 50, 100, 200],'criterion': ['gini', 'entropy']}` Then we used GridSearchCV to find the most optimal hyperparameters, which are: 'criterion': 'entropy', 'max_depth': 4, 'min_samples_split': 5. 
 
 We didn't gain any substantial difference. However, DecisionTreeClassifier had a slightly better performance than the logistic regression in predicting unseen data. For the DecisionTreeClassifier, the accuracy for the training data was around 0.83, and about 0.82 for the testing data. Therefore, the accuracy was improved significantly compared to the baseline model (0.6).
+
+We believe that the decision tree model is better than the logistic regression because the decision tree splits the data into smaller and smaller regions that represent clusters of the dataset, while the logistic regression can only determine optimal hyperplanes of the dataset, which may result in underfitting.
 
 
 ------
